@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Netflix - Movies</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="app-wrapper">
+        <!-- Left Vertical Navigation -->
+        <nav class="side-nav">
+            <a href="#" class="nav-icon" aria-label="Search">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="11" cy="11" r="8"/>
+                    <path d="M21 21l-4.35-4.35"/>
+                </svg>
+            </a>
+            <a href="#" class="nav-icon active" aria-label="Home">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/>
+                    <polyline points="9 22 9 12 15 12 15 22"/>
+                </svg>
+            </a>
+            <a href="#" class="nav-icon" aria-label="Movies">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <rect x="2" y="2" width="20" height="20" rx="2.18" ry="2.18"/>
+                    <line x1="7" y1="2" x2="7" y2="22"/>
+                    <line x1="17" y1="2" x2="17" y2="22"/>
+                    <line x1="2" y1="12" x2="22" y2="12"/>
+                    <line x1="2" y1="7" x2="7" y2="7"/>
+                    <line x1="2" y1="17" x2="7" y2="17"/>
+                    <line x1="17" y1="17" x2="22" y2="17"/>
+                    <line x1="17" y1="7" x2="22" y2="7"/>
+                </svg>
+            </a>
+            <a href="#" class="nav-icon" aria-label="Series">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <rect x="2" y="7" width="20" height="15" rx="2" ry="2"/>
+                    <polyline points="17 2 12 7 7 2"/>
+                </svg>
+            </a>
+            <a href="#" class="nav-icon" aria-label="New & Popular">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/>
+                    <polyline points="17 6 23 6 23 12"/>
+                </svg>
+            </a>
+            <a href="#" class="nav-icon" aria-label="My List">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <line x1="12" y1="5" x2="12" y2="19"/>
+                    <line x1="5" y1="12" x2="19" y2="12"/>
+                </svg>
+            </a>
+            <a href="#" class="nav-icon" aria-label="Shuffle Play">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <polyline points="16 3 21 3 21 8"/>
+                    <line x1="4" y1="20" x2="21" y2="3"/>
+                    <polyline points="21 16 21 21 16 21"/>
+                    <line x1="15" y1="15" x2="21" y2="21"/>
+                    <line x1="4" y1="4" x2="9" y2="9"/>
+                </svg>
+            </a>
+        </nav>
+
+        <!-- Main Content Area -->
+        <main class="main-content">
+            <!-- Hero Section -->
+            <section class="hero">
+                <div class="hero-background" id="hero-background"></div>
+                <div class="hero-gradient"></div>
+                <div class="hero-content">
+                    <div class="hero-badge">
+                        <span class="hero-badge-n">N</span>
+                        <span class="hero-badge-text" id="hero-badge-text">SERIES</span>
+                    </div>
+                    <h1 class="hero-title"><span id="hero-title-text">Loading...</span><span class="hero-title-highlight" id="hero-title-highlight"></span></h1>
+                    <div class="hero-meta">
+                        <span class="hero-part" id="hero-part"></span>
+                    </div>
+                    <div class="hero-info">
+                        <span class="hero-rating" id="hero-rating"></span>
+                        <span class="hero-streams" id="hero-streams"></span>
+                    </div>
+                    <div class="hero-buttons">
+                        <button class="btn btn-play">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M8 5v14l11-7z"/>
+                            </svg>
+                            Play
+                        </button>
+                        <button class="btn btn-trailer">
+                            Watch Trailer
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Movie Rows -->
+            <section class="content">
+                <div class="row">
+                    <h2 class="row-title">New this week</h2>
+                    <div class="row-container">
+                        <button class="scroll-arrow left" onclick="scrollRow('popular-movies', -1)" aria-label="Scroll left">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <polyline points="15 18 9 12 15 6"/>
+                            </svg>
+                        </button>
+                        <div class="row-content" id="popular-movies">
+                            <div class="loading">Loading movies...</div>
+                        </div>
+                        <button class="scroll-arrow right" onclick="scrollRow('popular-movies', 1)" aria-label="Scroll right">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <polyline points="9 18 15 12 9 6"/>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <h2 class="row-title">Trending Now</h2>
+                    <div class="row-container">
+                        <button class="scroll-arrow left" onclick="scrollRow('action-movies', -1)" aria-label="Scroll left">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <polyline points="15 18 9 12 15 6"/>
+                            </svg>
+                        </button>
+                        <div class="row-content" id="action-movies">
+                            <div class="loading">Loading movies...</div>
+                        </div>
+                        <button class="scroll-arrow right" onclick="scrollRow('action-movies', 1)" aria-label="Scroll right">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <polyline points="9 18 15 12 9 6"/>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <h2 class="row-title">Action</h2>
+                    <div class="row-container">
+                        <button class="scroll-arrow left" onclick="scrollRow('comedy-movies', -1)" aria-label="Scroll left">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <polyline points="15 18 9 12 15 6"/>
+                            </svg>
+                        </button>
+                        <div class="row-content" id="comedy-movies">
+                            <div class="loading">Loading movies...</div>
+                        </div>
+                        <button class="scroll-arrow right" onclick="scrollRow('comedy-movies', 1)" aria-label="Scroll right">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <polyline points="9 18 15 12 9 6"/>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <h2 class="row-title">Drama</h2>
+                    <div class="row-container">
+                        <button class="scroll-arrow left" onclick="scrollRow('drama-movies', -1)" aria-label="Scroll left">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <polyline points="15 18 9 12 15 6"/>
+                            </svg>
+                        </button>
+                        <div class="row-content" id="drama-movies">
+                            <div class="loading">Loading movies...</div>
+                        </div>
+                        <button class="scroll-arrow right" onclick="scrollRow('drama-movies', 1)" aria-label="Scroll right">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <polyline points="9 18 15 12 9 6"/>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <h2 class="row-title">Thriller</h2>
+                    <div class="row-container">
+                        <button class="scroll-arrow left" onclick="scrollRow('thriller-movies', -1)" aria-label="Scroll left">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <polyline points="15 18 9 12 15 6"/>
+                            </svg>
+                        </button>
+                        <div class="row-content" id="thriller-movies">
+                            <div class="loading">Loading movies...</div>
+                        </div>
+                        <button class="scroll-arrow right" onclick="scrollRow('thriller-movies', 1)" aria-label="Scroll right">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <polyline points="9 18 15 12 9 6"/>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

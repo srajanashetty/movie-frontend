@@ -1,0 +1,500 @@
+/* Netflix Reference Layout - Left Nav + Main Content */
+:root {
+    --side-nav-width: 68px;
+    --content-padding: 4%;
+    --content-padding-px: 48px;
+    --row-gap: 2vmin;
+    --card-width: 170px;
+    --card-aspect: 2 / 3;
+    --card-gap: 8px;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    background-color: #141414;
+    color: #fff;
+    overflow-x: hidden;
+}
+
+.app-wrapper {
+    display: flex;
+    min-height: 100vh;
+}
+
+/* Left Vertical Navigation */
+.side-nav {
+    position: fixed;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: var(--side-nav-width);
+    background-color: #0f0f0f;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px 0;
+    gap: 28px;
+    z-index: 1000;
+}
+
+.nav-icon {
+    width: 28px;
+    height: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #b3b3b3;
+    text-decoration: none;
+    transition: color 0.2s;
+}
+
+.nav-icon svg {
+    width: 24px;
+    height: 24px;
+}
+
+.nav-icon:hover {
+    color: #fff;
+}
+
+.nav-icon.active {
+    color: #fff;
+    position: relative;
+}
+
+.nav-icon.active::after {
+    content: '';
+    position: absolute;
+    left: -14px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 4px;
+    height: 24px;
+    background-color: #e50914;
+    border-radius: 0 4px 4px 0;
+}
+
+/* Main Content - To the right of side nav */
+.main-content {
+    flex: 1;
+    margin-left: var(--side-nav-width);
+    min-height: 100vh;
+}
+
+/* Hero Section */
+.hero {
+    position: relative;
+    width: 100%;
+    height: 52vw;
+    max-height: 78vh;
+    min-height: 420px;
+    display: flex;
+    align-items: flex-end;
+    overflow: hidden;
+}
+
+.hero-background {
+    position: absolute;
+    background-color: #1a1a1a;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    z-index: 1;
+}
+
+.hero-gradient {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        77deg,
+        rgba(0,0,0,.85) 0%,
+        rgba(0,0,0,0) 60%
+    ),
+    linear-gradient(
+        to top,
+        #141414 0%,
+        rgba(20,20,20,0.4) 40%,
+        transparent 100%
+    );
+    z-index: 2;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 3;
+    width: 100%;
+    padding: 0 var(--content-padding);
+    padding-left: max(var(--content-padding), var(--content-padding-px));
+    padding-right: max(var(--content-padding), var(--content-padding-px));
+    padding-bottom: 18%;
+}
+
+.hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    margin-bottom: 12px;
+}
+
+.hero-badge-n {
+    display: inline-block;
+    width: 22px;
+    height: 22px;
+    background-color: #e50914;
+    color: #fff;
+    font-size: 14px;
+    font-weight: 800;
+    line-height: 22px;
+    text-align: center;
+    font-family: inherit;
+}
+
+.hero-badge-text {
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    color: #fff;
+}
+
+.hero-title {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    margin-bottom: 8px;
+}
+
+.hero-title-highlight {
+    display: inline-block;
+    background-color: #e50914;
+    color: #fff;
+    padding: 2px 8px;
+    margin-left: 4px;
+}
+
+.hero-title #hero-title-text,
+.hero-title .hero-title-highlight {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(2.2rem, 4.5vw, 4.2rem);
+    font-weight: 400;
+    letter-spacing: 0.02em;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.9);
+    line-height: 1.05;
+}
+
+.hero-meta {
+    margin-bottom: 12px;
+}
+
+.hero-part {
+    font-size: 14px;
+    color: rgba(255,255,255,0.9);
+}
+
+.hero-info {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 18px;
+    font-size: 14px;
+}
+
+.hero-rating {
+    color: #fff;
+}
+
+.hero-streams {
+    color: rgba(255,255,255,0.85);
+}
+
+.hero-buttons {
+    display: flex;
+    gap: 12px;
+}
+
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 10px 28px;
+    font-size: 15px;
+    font-weight: 600;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: opacity 0.2s, background 0.2s;
+    font-family: inherit;
+}
+
+.btn-play {
+    background-color: #e50914;
+    color: #fff;
+}
+
+.btn-play:hover {
+    opacity: 0.9;
+}
+
+.btn-play svg {
+    width: 20px;
+    height: 20px;
+}
+
+.btn-trailer {
+    background-color: transparent;
+    color: #fff;
+    border: 2px solid rgba(255,255,255,0.9);
+}
+
+.btn-trailer:hover {
+    background-color: rgba(255,255,255,0.2);
+}
+
+/* Content Section */
+.content {
+    width: 100%;
+    margin-top: -12vw;
+    padding: 0 var(--content-padding);
+    padding-left: max(var(--content-padding), var(--content-padding-px));
+    padding-right: max(var(--content-padding), var(--content-padding-px));
+    position: relative;
+    z-index: 4;
+}
+
+.row {
+    margin-bottom: var(--row-gap);
+    position: relative;
+}
+
+.row:last-child {
+    margin-bottom: 80px;
+}
+
+.row-title {
+    font-size: 1.2rem;
+    font-weight: 700;
+    margin-bottom: 14px;
+    color: #fff;
+    letter-spacing: 0.2px;
+}
+
+.row-container {
+    position: relative;
+}
+
+.row-content {
+    display: flex;
+    gap: var(--card-gap);
+    overflow-x: auto;
+    overflow-y: hidden;
+    padding: 6px 0;
+    scroll-behavior: smooth;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+.row-content::-webkit-scrollbar {
+    display: none;
+}
+
+/* Movie Card - Portrait 2:3 aspect ratio */
+.movie-card {
+    flex: 0 0 auto;
+    width: var(--card-width);
+    aspect-ratio: var(--card-aspect);
+    border-radius: 4px;
+    overflow: hidden;
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    position: relative;
+}
+
+.movie-card:hover {
+    transform: scale(1.05);
+    z-index: 5;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.6);
+}
+
+.movie-card img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center top;
+}
+
+.movie-card-placeholder {
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #2d2d2d 0%, #1a1a1a 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #808080;
+    font-size: 12px;
+    text-align: center;
+    padding: 12px;
+}
+
+/* Circular scroll arrows */
+.scroll-arrow {
+    position: absolute;
+    top: 50%;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background-color: rgba(20,20,20,0.85);
+    border: none;
+    color: #fff;
+    cursor: pointer;
+    z-index: 20;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s, opacity 0.2s;
+    opacity: 0;
+}
+
+.row-container:hover .scroll-arrow {
+    opacity: 1;
+}
+
+.scroll-arrow:hover {
+    background-color: rgba(50,50,50,0.95);
+}
+
+.scroll-arrow.left {
+    left: 0;
+}
+
+.scroll-arrow.right {
+    right: 0;
+}
+
+.scroll-arrow svg {
+    width: 20px;
+    height: 20px;
+}
+
+.loading {
+    color: #808080;
+    font-size: 15px;
+    padding: 50px 20px;
+    text-align: center;
+}
+
+.error {
+    color: #e50914;
+    font-size: 15px;
+    padding: 50px 20px;
+    text-align: center;
+}
+
+/* Responsive */
+@media (max-width: 1200px) {
+    :root {
+        --card-width: 150px;
+        --content-padding-px: 36px;
+    }
+}
+
+@media (max-width: 900px) {
+    .side-nav {
+        width: 56px;
+        padding: 16px 0;
+        gap: 22px;
+    }
+
+    .main-content {
+        margin-left: 56px;
+    }
+
+    :root {
+        --side-nav-width: 56px;
+        --card-width: 130px;
+    }
+}
+
+@media (max-width: 768px) {
+    :root {
+        --card-width: 110px;
+        --content-padding-px: 20px;
+        --row-gap: 1.5vmin;
+    }
+
+    .hero-content {
+        padding-left: 20px;
+        padding-right: 20px;
+        padding-bottom: 14%;
+    }
+
+    .hero-title {
+        font-size: 1.9rem;
+    }
+
+    .content {
+        margin-top: -10vw;
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+
+    .scroll-arrow {
+        width: 36px;
+        height: 36px;
+    }
+
+    .scroll-arrow svg {
+        width: 16px;
+        height: 16px;
+    }
+}
+
+@media (max-width: 480px) {
+    :root {
+        --card-width: 95px;
+        --content-padding-px: 16px;
+    }
+
+    .hero-content {
+        padding-left: 16px;
+        padding-right: 16px;
+        padding-bottom: 12%;
+    }
+
+    .hero-title {
+        font-size: 1.6rem;
+    }
+
+    .hero-buttons {
+        flex-wrap: wrap;
+    }
+
+    .btn {
+        padding: 8px 20px;
+        font-size: 14px;
+    }
+
+    .content {
+        padding-left: 16px;
+        padding-right: 16px;
+    }
+
+    .row-title {
+        font-size: 1.05rem;
+    }
+}
