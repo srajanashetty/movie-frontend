@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Login • Netflix</title>
+  <link rel="stylesheet" href="/auth.css" />
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="/login">
+      <span class="n">N</span>
+      <span>NETFLIX</span>
+    </a>
+  </header>
+
+  <main class="wrap">
+    <section class="card" aria-label="Login form">
+      <h1>Sign In</h1>
+
+      <div id="flash"></div>
+
+      <form method="POST" action="/login" autocomplete="on">
+        <label for="username">Username</label>
+        <input id="username" name="username" required />
+
+        <label for="password">Password</label>
+        <input id="password" name="password" type="password" required />
+
+        <button class="btn" type="submit">Sign In</button>
+      </form>
+
+      <div class="alt">
+        New to Netflix? <a href="/register">Sign up now</a>
+      </div>
+      <div class="hint">
+        After login, you’ll be redirected to the Netflix-style landing page.
+      </div>
+    </section>
+  </main>
+
+  <script>
+    const params = new URLSearchParams(location.search);
+    const flash = document.getElementById("flash");
+    const error = params.get("error");
+    const registered = params.get("registered");
+    if (registered) {
+      flash.innerHTML = '<div class="msg good">Registration successful. Please sign in.</div>';
+    } else if (error === "missing") {
+      flash.innerHTML = '<div class="msg bad">Please enter both username and password.</div>';
+    } else if (error === "invalid") {
+      flash.innerHTML = '<div class="msg bad">Invalid username or password.</div>';
+    } else if (error === "server") {
+      flash.innerHTML = '<div class="msg bad">Server error. Please try again.</div>';
+    }
+  </script>
+</body>
+</html>
+

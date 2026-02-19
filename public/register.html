@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Register • Netflix</title>
+  <link rel="stylesheet" href="/auth.css" />
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="/login">
+      <span class="n">N</span>
+      <span>NETFLIX</span>
+    </a>
+  </header>
+
+  <main class="wrap">
+    <section class="card" aria-label="Registration form">
+      <h1>Sign Up</h1>
+
+      <div id="flash"></div>
+
+      <form method="POST" action="/register" autocomplete="on">
+        <label for="username">Username</label>
+        <input id="username" name="username" required />
+
+        <label for="email">Email</label>
+        <input id="email" name="email" type="email" required />
+
+        <label for="password">Password</label>
+        <input id="password" name="password" type="password" required minlength="6" />
+
+        <button class="btn" type="submit">Create account</button>
+      </form>
+
+      <div class="alt">
+        Already have an account? <a href="/login">Sign in</a>
+      </div>
+      <div class="hint">
+        Passwords are stored encoded (bcrypt hash). After signup you’ll be redirected to login automatically.
+      </div>
+    </section>
+  </main>
+
+  <script>
+    const params = new URLSearchParams(location.search);
+    const flash = document.getElementById("flash");
+    const error = params.get("error");
+    if (error === "missing") {
+      flash.innerHTML = '<div class="msg bad">Please fill in all fields.</div>';
+    } else if (error === "exists") {
+      flash.innerHTML = '<div class="msg bad">Username or email already exists.</div>';
+    } else if (error === "server") {
+      flash.innerHTML = '<div class="msg bad">Server error. Please try again.</div>';
+    }
+  </script>
+</body>
+</html>
+
