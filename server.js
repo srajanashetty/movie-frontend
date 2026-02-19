@@ -8,12 +8,20 @@ import { fileURLToPath } from "url";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-const DATABASE_URL =
-  process.env.DATABASE_URL ??
-  "mysql://avnadmin:REDACTED@mysql-427e6ce-srajanashetty2611-88be.i.aivencloud.com:18255/defaultdb?ssl-mode=REQUIRED";
-
+const DATABASE_URL = process.env.DATABASE_URL;
 const PORT = Number(process.env.PORT ?? 3000);
-const SESSION_SECRET = process.env.SESSION_SECRET ?? "dev-session-secret";
+const SESSION_SECRET = process.env.SESSION_SECRET;
+
+if (!DATABASE_URL) {
+  throw new Error(
+    "Missing DATABASE_URL env var. Set it before starting the server."
+  );
+}
+if (!SESSION_SECRET) {
+  throw new Error(
+    "Missing SESSION_SECRET env var. Set it before starting the server."
+  );
+}
 
 function requireAuth(req, res, next) {
   if (req.session?.user?.id) return next();
